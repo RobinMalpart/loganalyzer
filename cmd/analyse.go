@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/RobinMalpart/loganizer/internal/analyzer"
 	"github.com/RobinMalpart/loganizer/internal/config"
 	"github.com/spf13/cobra"
 )
@@ -26,11 +27,22 @@ var analyzeCmd = &cobra.Command{
 		}
 
 		fmt.Printf("Config chargée : %d logs\n", len(logs))
-		for _, log := range logs {
-			fmt.Printf("- ID: %s, Path: %s, Type: %s\n", log.ID, log.Path, log.Type)
+
+		// Analyse des logs (étape 3)
+		results := analyzer.RunAll(logs)
+
+		// Affichage des résultats sur la console
+		fmt.Println("Résultats de l'analyse :")
+		for _, res := range results {
+			fmt.Printf("LogID: %s | Path: %s | Status: %s | Message: %s\n",
+				res.LogID, res.FilePath, res.Status, res.Message)
+			if res.ErrorDetails != "" {
+				fmt.Printf("  Détails de l'erreur: %s\n", res.ErrorDetails)
+			}
 		}
 
-		// La suite viendra ici (appel à analyzer.RunAll)
+		// Prochaine étape (step 4) → exporter vers JSON
+		// reporter.Save(results, outputPath)
 	},
 }
 
