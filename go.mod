@@ -1,4 +1,4 @@
-module github.com/RobinMalpart/loganizer
+module loganizer
 
 go 1.24.3
 

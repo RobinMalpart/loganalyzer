@@ -1,12 +1,11 @@
 package analyzer
 
 import (
+	"loganizer/internal/config"
 	"math/rand"
 	"os"
 	"sync"
 	"time"
-
-	"github.com/RobinMalpart/loganizer/internal/config"
 )
 
 type Result struct {
