@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	analyzer "loganalyzer/internal/analyser"
+	analyzer "loganalyzer/internal/analyzer"
 	"loganalyzer/internal/config"
 	"os"
 	"sync"
