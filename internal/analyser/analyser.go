@@ -1,7 +1,7 @@
 package analyzer
 
 import (
-	"loganizer/internal/config"
+	"loganalyzer/internal/config"
 	"math/rand"
 	"os"
 	"sync"
@@ -11,7 +11,7 @@ import (
 type Result struct {
 	LogID        string `json:"log_id"`
 	FilePath     string `json:"file_path"`
-	Status       string `json:"status"` // "OK" ou "FAILED"
+	Status       string `json:"status"`
 	Message      string `json:"message"`
 	ErrorDetails string `json:"error_details"`
 }
@@ -61,7 +61,7 @@ func analyzeLog(log config.LogConfig) Result {
 		return res
 	}
 
-	sleepMs := rand.Intn(151) + 50 // 50 à 200 ms
+	sleepMs := rand.Intn(151) + 50
 	time.Sleep(time.Duration(sleepMs) * time.Millisecond)
 
 	if rand.Float64() < 0.1 {

@@ -1,5 +1,3 @@
 package main
 
-func main() {
-	cmd.Execute()
-}
+func main() {}
