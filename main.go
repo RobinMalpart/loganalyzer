@@ -1,3 +1,9 @@
 package main
 
-func main() {}
+import (
+	"loganalyzer/cmd"
+)
+
+func main() {
+	cmd.Execute()
+}
