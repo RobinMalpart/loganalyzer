@@ -1,7 +1,13 @@
 package analyzer
 
 import (
+	"errors"
 	"fmt"
+)
+
+var (
+	ErrFileNotFoundSentinel = errors.New("Fichier introuvable")
+	ErrFileEmptySentinel    = errors.New("Fichier vide")
 )
 
 type ErrFileNotFound struct {
@@ -10,7 +16,7 @@ type ErrFileNotFound struct {
 }
 
 func (e *ErrFileNotFound) Error() string {
-	return fmt.Sprintf("open : %s", e.Path)
+	return fmt.Sprintf("open %s: no such file or directory", e.Path)
 }
 
 func (e *ErrFileNotFound) Unwrap() error {
@@ -23,7 +29,7 @@ type ErrFileEmpty struct {
 }
 
 func (e *ErrFileEmpty) Error() string {
-	return fmt.Sprintf("empty log file : %s", e.Path)
+	return fmt.Sprintf("open %s file empty", e.Path)
 }
 
 func (e *ErrFileEmpty) Unwrap() error {

@@ -53,7 +53,7 @@ func Analyse(logs []config.LogConfig) []Result {
 
 func analyzeLog(logPath string) error {
 	if _, err := os.Stat(logPath); err != nil {
-		return &ErrFileNotFound{Path: logPath, Err: err}
+		return &ErrFileNotFound{Path: logPath, Err: ErrFileNotFoundSentinel}
 	}
 
 	sleepMs := rand.Intn(151) + 50
@@ -61,11 +61,11 @@ func analyzeLog(logPath string) error {
 
 	content, err := os.ReadFile(logPath)
 	if err != nil {
-		return &ErrFileNotFound{Path: logPath, Err: err}
+		return &ErrFileNotFound{Path: logPath, Err: ErrFileNotFoundSentinel}
 	}
 
 	if len(content) == 0 {
-		return &ErrFileEmpty{Path: logPath, Err: err}
+		return &ErrFileEmpty{Path: logPath, Err: ErrFileEmptySentinel}
 	}
 	return nil
 }
@@ -74,10 +74,14 @@ func getMessageAndStatus(err error) (string, string) {
 	if err == nil {
 		return "Analyse terminée avec succès.", "OK"
 	}
-	if errors.Is(err, &ErrFileNotFound{}) {
+
+	if errors.Is(err, ErrFileNotFoundSentinel) {
 		return "Fichier introuvable.", "FAILED"
-	} else if errors.Is(err, &ErrFileEmpty{}) {
-		return "Erreur de parsing.", "FAILED"
 	}
+
+	if errors.Is(err, ErrFileEmptySentinel) {
+		return "Fichier vide.", "FAILED"
+	}
+
 	return "Erreur inconnue.", "FAILED"
 }
