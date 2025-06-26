@@ -149,7 +149,8 @@ Vous avez l'âme d'un.e développeur.euse courageux.euse ? Je vous laisse ici qu
 
 1. Créer un module : `go mod init`
 2. Installer Cobra : `go get github.com/spf13/cobra@latest`
-3. Avoir bien lu le readme ;)
+3. Commande d'analyse : `go run main.go analyze --input config.json`
+4. Avoir bien lu le readme ;)
 
 ---
 
