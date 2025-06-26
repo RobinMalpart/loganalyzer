@@ -27,13 +27,16 @@ func Analyse(logs []config.LogConfig) []Result {
 			defer wg.Done()
 			err := analyzeLog(log.Path)
 			message, status := getMessageAndStatus(err)
-			resultChan <- Result{
-				LogID:        log.ID,
-				FilePath:     log.Path,
-				Status:       status,
-				Message:      message,
-				ErrorDetails: err.Error(),
+			result := Result{
+				LogID:    log.ID,
+				FilePath: log.Path,
+				Status:   status,
+				Message:  message,
 			}
+			if err != nil {
+				result.ErrorDetails = err.Error()
+			}
+			resultChan <- result
 		}(logCfg)
 	}
 
