@@ -1,5 +1,10 @@
 # TP : GoLog Analyzer - Analyse de Logs Distribuée
 
+### Réalisé par 
+- Rosvalde Florient MANFO JIENGAP
+- Ranyl Josue FOUMBI DJOMO
+- Robin MALPART
+
 ### Contexte
 
 Votre équipe est chargée de développer un outil en ligne de commande (CLI) en Go, nommé `loganalyzer`. Son but est d'aider les administrateurs système à analyser des fichiers de logs (journaux) provenant de diverses sources (serveurs, applications). L'objectif est de pouvoir centraliser l'analyse de multiples logs en parallèle et d'en extraire des informations clés, tout en gérant les erreurs potentielles de manière robuste.
