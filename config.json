@@ -28,5 +28,10 @@
     "id": "corrupted-log",
     "path": "test_logs/corrupted.log",
     "type": "custom-app"
+  },
+  {
+    "id": "access",
+    "path": "access.log",
+    "type": "access"
   }
 ]
