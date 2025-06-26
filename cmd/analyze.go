@@ -5,6 +5,7 @@ import (
 	"loganalyzer/internal/analyzer"
 	"loganalyzer/internal/config"
 	"os"
+	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -35,6 +36,10 @@ var analyseCmd = &cobra.Command{
 			fmt.Fprintf(os.Stderr, "Erreur lors du chargement de la configuration depuis le fichier %s: %v\n", inputFilePath, err)
 			os.Exit(1)
 		}
+
+		//bonus2
+		datePrefix := time.Now().Format("02012006")
+		outputFilePath = fmt.Sprintf("%s_%s", datePrefix, outputFilePath)
 
 		results := analyzer.Analyse(logs)
 
